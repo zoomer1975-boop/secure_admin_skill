@@ -28,7 +28,7 @@
 ### Codex
 
 ```bash
-npx --yes github:zoomer1975-boop/secure_admin_skill -- --codex
+npx --yes github:zoomer1975-boop/secure_admin_skill --codex
 ```
 
 설치 위치: `~/.agents/skills/building-secure-admin-pages`
@@ -36,7 +36,7 @@ npx --yes github:zoomer1975-boop/secure_admin_skill -- --codex
 ### Claude Code
 
 ```bash
-npx --yes github:zoomer1975-boop/secure_admin_skill -- --claude
+npx --yes github:zoomer1975-boop/secure_admin_skill --claude
 ```
 
 설치 위치:
@@ -47,7 +47,7 @@ npx --yes github:zoomer1975-boop/secure_admin_skill -- --claude
 ### Codex와 Claude Code에 모두 설치
 
 ```bash
-npx --yes github:zoomer1975-boop/secure_admin_skill -- --all
+npx --yes github:zoomer1975-boop/secure_admin_skill --all
 ```
 
 설치 후 스킬이 목록에 보이지 않으면 해당 도구를 새 세션에서 다시 시작하세요.
@@ -57,7 +57,7 @@ npx --yes github:zoomer1975-boop/secure_admin_skill -- --all
 기존 대상 폴더가 있으면 설치기는 파일을 변경하지 않고 종료합니다. 검토 후 교체하려면 `--force`를 추가합니다.
 
 ```bash
-npx --yes github:zoomer1975-boop/secure_admin_skill -- --all --force
+npx --yes github:zoomer1975-boop/secure_admin_skill --all --force
 ```
 
 `--force`는 선택한 도구의 `building-secure-admin-pages` 스킬 폴더를 삭제하고 배포본으로 교체합니다.

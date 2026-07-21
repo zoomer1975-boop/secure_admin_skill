@@ -101,3 +101,12 @@ test('rejects multiple target flags', async (t) => {
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /Choose exactly one of --codex, --claude, or --all/);
 });
+
+test('documents executable GitHub npx commands', async () => {
+  const readme = await readFile(join(repoRoot, 'README.md'), 'utf8');
+
+  assert.doesNotMatch(readme, /github:zoomer1975-boop\/secure_admin_skill -- --/);
+  for (const flag of ['--codex', '--claude', '--all']) {
+    assert.match(readme, new RegExp(`npx --yes github:zoomer1975-boop/secure_admin_skill ${flag}`));
+  }
+});

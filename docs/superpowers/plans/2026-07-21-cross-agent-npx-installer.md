@@ -93,7 +93,7 @@ Include:
 - Project purpose and the `building-secure-admin-pages` skill name.
 - Short safeguards summary: named accounts, super/sub-admin separation, TOTP, IP allowlists, server authorization, immutable fail-closed audit logging, and privacy retention/destruction checks.
 - Requirement: Node.js 18+.
-- GitHub commands using `npx --yes github:zoomer1975-boop/secure_admin_skill -- --codex`, `--claude`, and `--all`.
+- GitHub commands using `npx --yes github:zoomer1975-boop/secure_admin_skill --codex`, `--claude`, and `--all`.
 - `--force` overwrite example and warning.
 - Installed paths and invocation examples (`$building-secure-admin-pages` for Codex and `/building-secure-admin-pages` for Claude Code).
 - Statement that the skill is a development standard, not legal advice, and current Korean official sources must be checked when compliance matters.

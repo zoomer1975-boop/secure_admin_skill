@@ -47,9 +47,9 @@ npx building-secure-admin-pages --all --force
 Until the package is published to npm, GitHub users install it directly:
 
 ```text
-npx --yes github:zoomer1975-boop/secure_admin_skill -- --codex
-npx --yes github:zoomer1975-boop/secure_admin_skill -- --claude
-npx --yes github:zoomer1975-boop/secure_admin_skill -- --all
+npx --yes github:zoomer1975-boop/secure_admin_skill --codex
+npx --yes github:zoomer1975-boop/secure_admin_skill --claude
+npx --yes github:zoomer1975-boop/secure_admin_skill --all
 ```
 
 Exactly one target flag is required. `--help` prints usage. Unknown flags, missing target flags, or multiple target flags exit nonzero without writing files.
