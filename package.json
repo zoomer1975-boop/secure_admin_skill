@@ -1,0 +1,19 @@
+{
+  "name": "building-secure-admin-pages",
+  "version": "1.0.0",
+  "description": "Install secure administrator-page rules for Codex and Claude Code.",
+  "type": "module",
+  "bin": {
+    "building-secure-admin-pages": "bin/install.mjs"
+  },
+  "files": [
+    "bin",
+    "skills"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

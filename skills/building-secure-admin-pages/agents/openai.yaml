@@ -1,0 +1,4 @@
+interface:
+  display_name: "안전한 관리자 페이지 제작"
+  short_description: "웹 관리자 보안·권한·감사로그 제작 규칙"
+  default_prompt: "$building-secure-admin-pages를 사용해 이 웹사이트의 관리자 페이지를 보안·권한·감사로그·개인정보 규칙에 따라 설계하고 검토해줘."
