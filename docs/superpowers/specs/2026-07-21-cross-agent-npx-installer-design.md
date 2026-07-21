@@ -18,6 +18,7 @@ The direct-copy CLI is the smallest portable option. Native Codex or Claude plug
 ## Package layout
 
 ```text
+README.md
 package.json
 bin/
   install.mjs
@@ -32,6 +33,8 @@ test/
 
 The repository copy under `skills/` is the canonical distributable artifact. Both tools receive the same directory. Claude Code ignores the optional Codex UI metadata under `agents/`; Codex uses it.
 
+`README.md` is written in Korean for GitHub users and contains the project purpose, principal administrator-page safeguards, prerequisites, Codex/Claude/both installation commands, overwrite behavior, installed paths, invocation examples, and the legal-advice limitation.
+
 ## Command interface
 
 ```text
@@ -39,6 +42,14 @@ npx building-secure-admin-pages --codex
 npx building-secure-admin-pages --claude
 npx building-secure-admin-pages --all
 npx building-secure-admin-pages --all --force
+```
+
+Until the package is published to npm, GitHub users install it directly:
+
+```text
+npx --yes github:zoomer1975-boop/secure_admin_skill -- --codex
+npx --yes github:zoomer1975-boop/secure_admin_skill -- --claude
+npx --yes github:zoomer1975-boop/secure_admin_skill -- --all
 ```
 
 Exactly one target flag is required. `--help` prints usage. Unknown flags, missing target flags, or multiple target flags exit nonzero without writing files.
@@ -77,7 +88,7 @@ Every test runs against temporary directories; tests must never write to the rea
 
 ## Publication boundary
 
-This implementation produces a publish-ready package and verifies its tarball contents. Publishing to npm, choosing an npm owner, and creating registry credentials remain separate actions requiring explicit approval.
+This implementation produces a publish-ready package, verifies its tarball contents, and pushes the repository to `https://github.com/zoomer1975-boop/secure_admin_skill`. Publishing to npm, choosing an npm owner, and creating registry credentials remain separate actions requiring explicit approval.
 
 ## Success criteria
 
@@ -85,3 +96,4 @@ This implementation produces a publish-ready package and verifies its tarball co
 - `npm pack --dry-run` includes only the CLI and distributable skill files required at runtime.
 - The existing Codex skill validator accepts the packaged skill.
 - The working tree contains no generated tarball or installed test artifacts.
+- The GitHub remote branch resolves to the same commit as the local branch after push.
