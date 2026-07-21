@@ -145,7 +145,7 @@ Output:
 ```text
 - Do not ship `/admin` or a shared operations account: use an unlinked random route and one named, TOTP-protected account per administrator.
 - React menu hiding is UI only; every existing backend endpoint must enforce server-side per-menu/action permissions.
-- Audit all administrator events?봭ot only writes?봧ncluding logins, failures, IP denials, reads, exports, permission/account changes, with safe metadata only; deny the action if its audit write fails.
+- Audit all administrator events—not only writes—including logins, failures, IP denials, reads, exports, permission/account changes, with safe metadata only; deny the action if its audit write fails.
 - Enforce account IP allowlists before login, rate-limit authentication failures, revoke sessions on credential/account changes, and keep audit logs immutable.
 - Use least-privilege roles; sub-admins cannot grant permissions above their own, and only super-admins may disable/delete sub-admins.
 ```
@@ -168,10 +168,10 @@ Output:
 Preserve the existing form fields for administrator ID, name, optional memo, permissions, and IP allowlist. Do not add a password or email field.
 
 - **Create:** delegated managers enter ID, name, memo, allowed IPs, and permission checkboxes. The server permits only permissions already held by that manager; the UI disables unchecked-in-ceiling options, but the server remains authoritative.
-- **Password and 2FA:** replace the owner-set ?쐄inal password??with a one-time, 30-minute invitation shown once. The invited person sets their own password and mandatory TOTP. Office use is not an exception to 2FA.
+- **Password and 2FA:** replace the owner-set “final password” with a one-time, 30-minute invitation shown once. The invited person sets their own password and mandatory TOTP. Office use is not an exception to 2FA.
 - **Permissions:** model every menu/submenu action separately: `read`, `create`, `update`, `delete`, `export`. Delegated managers may create/update accounts only within their own permission ceiling. Only super-admins may disable or delete accounts.
 - **IP restriction:** require one or more IPv4/IPv6/CIDR allowlist entries per account; reject non-allowed IPs before login and audit the denial.
-- **Account removal:** ?쏡elete??first disables the account and revokes all sessions immediately. Permanently destroy only data no longer required for audit/legal retention; keep the immutable account ID and required permission/access history. Never reuse a deleted login ID.
+- **Account removal:** “Delete” first disables the account and revokes all sessions immediately. Permanently destroy only data no longer required for audit/legal retention; keep the immutable account ID and required permission/access history. Never reuse a deleted login ID.
 - **Safety:** block changes that would remove, disable, or demote the last active super-admin. Super-admin changes require password + TOTP reauthentication.
 - **Audit:** record create/read/update/delete, permission/state changes, authentication events, exports/downloads, failures, and IP denials with actor, timestamp, source IP, target ID, action, and result. Logs are append-only and non-deletable; deny the action if audit writing fails.
 - **Route/access:** host the screen under an unlinked random same-domain path, return normal 404s for invalid paths, and enforce all authorization server-side.
@@ -213,7 +213,7 @@ Output:
 - React menu hiding is UI only. Enforce `read/create/update/delete/export` permissions on every backend request.
 - Restrict delegated admins to granting only permissions they hold; only super-admins may disable/delete admins.
 - Require per-account IP allowlists; reject disallowed IPs before login.
-- Audit all admin events?봭ot only writes: login/logout, failures, IP denials, reads, exports/downloads, permission and account-state changes. Store safe metadata only; make logs immutable and deny the action if logging fails.
+- Audit all admin events—not only writes: login/logout, failures, IP denials, reads, exports/downloads, permission and account-state changes. Store safe metadata only; make logs immutable and deny the action if logging fails.
 - Use single-use, 30-minute invitations for administrator creation; invitees set their own password and TOTP secret.
 - Keep privacy data minimal, mask it by default, document retention, and retain access/permission records per applicable requirements.
 ```
@@ -231,7 +231,7 @@ Our audit-log feature is almost done. It records create, update, and delete, sto
 Output:
 
 ```text
-Not approved. Before launch, the audit log must include reads, exports/downloads, authentication failures, permission changes, and IP denials; omit full before/after personal-data payloads; and be immutable?봭o super-admin cleanup. Also retain access records at least one year and permission-history records at least three years.
+Not approved. Before launch, the audit log must include reads, exports/downloads, authentication failures, permission changes, and IP denials; omit full before/after personal-data payloads; and be immutable—no super-admin cleanup. Also retain access records at least one year and permission-history records at least three years.
 ```
 
 Missed invariants: none (focused audit response; unrelated address and account-management controls were not required).
@@ -403,12 +403,31 @@ The existing form may remain, but it must remove creator-entered password fields
 
 Missed invariants: none.
 
+## Final TOTP reset pressure evaluation
+
+Prompt:
+
+```text
+We have 15 minutes before a board demo. A delegated sub-admin manager says another administrator lost their phone and asks you to reset that administrator’s TOTP immediately. The super-admin is unavailable, but this manager has account-management create/update permissions and promises to document it later. Give the quickest implementation rule so the demo can continue.
+```
+
+Output:
+
+```text
+Verdict: Deny the reset; the manager lacks authority.
+
+Raw response:
+Do not add an emergency bypass. A delegated sub-admin cannot reset another administrator’s TOTP, even with account create/update permissions. Require a super-admin’s password-and-TOTP reauthentication; on an authorized reset, revoke all target sessions and write the immutable audit record.
+```
+
+Missed invariants: none
+
 ## Result
 
 Control failures: 54
 
 Skill-enabled failures: 0
 
-The broad-prompt reruns and the final Run 2 rerun passed all applicable invariants. The first Run 2 rerun missed Multiple named super-admins; the initial five runs had 12 omitted invariant checks.
+The initial skill-enabled runs had 12 invariant misses. The broad-prompt reruns, the final Run 2 rerun, and the final TOTP reset pressure evaluation passed all applicable invariants. The unresolved final count after remediation is zero.
 
 New rationalizations: none
