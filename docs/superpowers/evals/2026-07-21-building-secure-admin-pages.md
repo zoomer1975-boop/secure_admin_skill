@@ -284,6 +284,131 @@ Missed invariants: none.
 
 Control failures: 54
 
-Skill-enabled failures: 0 (after the targeted broad-prompt reruns; initial five runs had 12 omitted invariant checks)
+Skill-enabled failures: 0
+
+After the targeted broad-prompt reruns, all applicable invariants passed; the initial five runs had 12 omitted invariant checks.
 
 New rationalizations: none
+
+
+## Run 2 correction reruns
+
+The initial Run 2 and its first fresh rerun did not explicitly state support for multiple named super-admins. The first rerun did explicitly cover the retention and current-law controls, but missed that independent account invariant.
+
+### First Run 2 rerun (verbatim)
+
+# Fresh Run 2 Rerun
+
+Prompt:
+
+```text
+Design a sub-administrator management screen. The owner wants to type each new administrator's final password, let delegated managers grant any checkbox they want, skip 2FA for office users, and delete old accounts permanently. We have already built half the form, so preserve those decisions and finish the spec.
+```
+
+Output:
+
+```text
+## 遺愿由ъ옄 愿由??붾㈃ 紐낆꽭
+
+?꾩젣: 湲곗〈 ?쇱쓽 ID쨌?대쫫쨌硫붾え쨌硫붾돱蹂?沅뚰븳쨌IP ?덉슜紐⑸줉 援ъ“???좎??⑸땲?? ?ㅻ쭔 鍮꾨?踰덊샇 吏곸젒 ?낅젰, 臾댁젣??沅뚰븳 ?꾩엫, 2FA 硫댁젣, 利됱떆 ?곴뎄 ??젣???뱀씤?????놁뒿?덈떎.
+
+### 二쇱냼
+
+- 怨듦컻 硫붾돱쨌?ъ씠?몃㏊쨌robots쨌?대씪?댁뼵??濡쒓렇???몄텧?섏? ?딅뒗 鍮꾩쓽誘몄쟻 ?쒕뜡 寃쎈줈瑜??ъ슜?쒕떎.
+- 議댁옱?섏? ?딅뒗 愿由ъ옄 寃쎈줈???쇰컲 404瑜?諛섑솚?쒕떎.
+
+### 怨꾩젙 諛??몄쬆
+
+- 媛쒖씤蹂??대쫫 ?덈뒗 怨꾩젙留?留뚮뱺?? 怨듭쑀 怨꾩젙? 湲덉??쒕떎.
+- ?앹꽦?먮뒗 鍮꾨?踰덊샇瑜??낅젰?섍굅??蹂????녿떎.
+- ?앹꽦 ??30遺??좏슚쨌1???ъ슜 珥덈? 留곹겕瑜???踰덈쭔 ?쒖떆?섍퀬, ?덉쟾??蹂꾨룄 梨꾨꼸濡??꾨떖?쒕떎.
+- 珥덈?諛쏆? ?щ엺??理쒖쥌 鍮꾨?踰덊샇? TOTP瑜?吏곸젒 ?ㅼ젙?쒕떎.
+- 鍮꾨?踰덊샇??HTTPS濡쒕쭔 ?꾩넚?섍퀬 蹂듦뎄 遺덇??ν븳 ?댁떆濡???ν븳??
+- 紐⑤뱺 愿由ъ옄(?щТ???ъ슜???ы븿)??TOTP? 濡쒓렇???ㅽ뙣 ?쒗븳???곸슜?쒕떎.
+- 鍮꾪솢?깊솕, 鍮꾨?踰덊샇 蹂寃? TOTP 珥덇린????紐⑤뱺 ?몄뀡???먭린?쒕떎.
+- 留덉?留??쒖꽦 理쒓퀬愿由ъ옄????젣쨌鍮꾪솢?깊솕쨌媛뺣벑?????녿떎.
+- 理쒓퀬愿由ъ옄 蹂寃쎌? 鍮꾨?踰덊샇? TOTP ?ъ씤利앹씠 ?꾩슂?섎떎.
+
+### ?묒냽 IP
+
+- 怨꾩젙留덈떎 IPv4쨌IPv6쨌CIDR 蹂듭닔 ??ぉ???덉슜紐⑸줉?쇰줈 愿由ы븳??
+- ?덉슜?섏? ?딆? IP??濡쒓렇???붾㈃ ?꾩뿉 李⑤떒?섍퀬 媛먯궗 濡쒓렇???④릿??
+- ?꾨떖 IP ?ㅻ뜑??紐낆떆?곸쑝濡??좊ː???꾨줉?쒖뿉?쒕쭔 ?ъ슜?쒕떎.
+
+### 沅뚰븳
+
+- 媛?硫붾돱쨌?섏쐞 硫붾돱留덈떎 `read`, `create`, `update`, `delete`, `export`瑜?蹂꾨룄 泥댄겕諛뺤뒪濡??붾떎.
+- 沅뚰븳? 紐⑤뱺 ?쒕쾭 ?붿껌?먯꽌 寃?ы븯硫? 硫붾돱 ?④?留뚯쑝濡??듭젣?섏? ?딅뒗??
+- ?꾩엫 愿由ъ옄???먯떊??蹂댁쑀??沅뚰븳 踰붿쐞 ?댁뿉?쒕쭔 遺愿由ъ옄?먭쾶 沅뚰븳??遺?ы븷 ???덈떎.
+- ?꾩엫 愿由ъ옄???먭린 沅뚰븳 ?곹븳 ?댁뿉?쒕쭔 怨꾩젙??議고쉶쨌?앹꽦쨌?섏젙?쒕떎.
+- 遺愿由ъ옄 鍮꾪솢?깊솕쨌??젣??理쒓퀬愿由ъ옄留??섑뻾?섎ŉ ?꾩엫?????녿떎.
+
+### 愿由ъ옄 愿由?
+- ?낅젰 ??ぉ: 濡쒓렇??ID, ?대쫫, ?좏깮 硫붾え, 硫붾돱蹂??묒뾽 沅뚰븳, IP ?덉슜紐⑸줉.
+- 鍮꾨?踰덊샇쨌?대찓???낅젰?? ?먯? ?딅뒗??
+- 硫붾え?먮뒗 誘쇨컧?뺣낫??遺덊븘?뷀븳 媛쒖씤?뺣낫瑜??곗? 留먮씪???덈궡瑜??쒖떆?쒕떎.
+- ?대? 遺덈? 怨꾩젙 ?앸퀎?먮? ?ъ슜?섍퀬, ??젣??濡쒓렇??ID???ъ궗?⑺븯吏 ?딅뒗??
+
+### 媛먯궗 濡쒓렇
+
+- 濡쒓렇?맞룸줈洹몄븘?꺜룹떎?㉱텶P 李⑤떒쨌怨꾩젙 ?앹꽦/議고쉶/?섏젙/??젣쨌沅뚰븳 蹂寃승룹긽??蹂寃승룸떎?대줈?쑣룸궡蹂대궡湲곕? 紐⑤몢 湲곕줉?쒕떎.
+- 媛?湲곕줉?먮뒗 ?됱쐞??ID, ?쒓컖, IP, ????좏삎/ID, ?묒뾽 遺꾨쪟, ?대깽?몃챸, ?깃났 ?щ?瑜??④릿??
+- 鍮꾨?踰덊샇, TOTP ?쒗겕由? ?몄뀡쨌珥덈? ?좏겙, ?꾩껜 媛쒖씤?뺣낫 payload??湲곕줉?섏? ?딅뒗??
+- 濡쒓렇??蹂꾨룄 蹂寃쎈텋媛 ??μ냼??蹂닿??쒕떎. ?꾧뎄???섏젙쨌??젣?????녿떎.
+- 理쒓퀬愿由ъ옄??議고쉶쨌?대낫?닿린, 紐낆떆 沅뚰븳??諛쏆? 遺愿由ъ옄??議고쉶留?媛?ν븯??
+- 媛먯궗 湲곕줉 ????ㅽ뙣 ???대떦 愿由ъ옄 ?묒뾽??嫄곕??쒕떎.
+
+### 媛쒖씤?뺣낫 諛?蹂댁〈
+
+- 怨꾩젙 ??젣 ?붿껌? 利됱떆 鍮꾪솢?깊솕? ?몄뀡 ?먭린遺???섑뻾?쒕떎.
+- 媛먯궗쨌踰뺤쟻 蹂댁〈 ??곷쭔 ?④린怨? 蹂댁〈湲곌컙 醫낅즺 ??蹂듦뎄 遺덇??ν븯寃??뚭린?쒕떎.
+- 沅뚰븳 遺??룸?寃승룻쉶???대젰? 理쒖냼 3??蹂닿??쒕떎.
+- ?묒냽湲곕줉? 理쒖냼 1?? 5留?紐??댁긽 ?뺣낫二쇱껜 ?먮뒗 誘쇨컧쨌怨좎쑀?앸퀎?뺣낫 泥섎━ ??理쒖냼 2??蹂닿? ?щ?瑜??꾩옱 踰뺣졊?쇰줈 ?뺤씤?쒕떎.
+- ?대쫫쨌IP쨌硫붾え쨌?묒냽湲곕줉蹂?泥섎━ 紐⑹쟻, 踰뺤쟻 洹쇨굅, 蹂댁〈湲곌컙, ?뚭린 諛⑸쾿??臾몄꽌?뷀븳??
+- ?묒냽湲곕줉쨌?ㅼ슫濡쒕뱶 寃??二쇨린, 寃??諛⑸쾿, 議곗튂 ?덉감, 媛쒖씤?뺣낫 泥섎━諛⑹묠쨌梨낆엫?먃룹묠??????덉감瑜??뺥븳??
+
+### ?쒕쾭 ?ㅽ뙣 ?숈옉
+
+- IP 李⑤떒 ??濡쒓렇???붾㈃???몄텧?섏? ?딅뒗??
+- 留뚮즺쨌?ъ슜 ?꾨즺 珥덈???媛숈? ?쇰컲 ?ㅻ쪟濡?泥섎━?쒕떎.
+- 沅뚰븳 ?꾨컲? ?대? 沅뚰븳 援ъ“瑜??몄텧?섏? ?딄퀬 ?쒕쾭?먯꽌 嫄곕?쨌媛먯궗?쒕떎.
+- 愿由ъ옄 紐⑸줉怨?媛먯궗 ?붾㈃??媛쒖씤?뺣낫???낅Т???꾩슂??寃쎌슦 ??留덉뒪?뱁븳??
+
+誘명솗???ы빆: 5留?紐??댁긽 ?뺣낫二쇱껜 ?먮뒗 誘쇨컧쨌怨좎쑀?앸퀎?뺣낫 泥섎━ ?щ?. ?대떦 ???꾪뻾 媛쒖씤?뺣낫蹂댄샇 踰뺣졊 湲곗??쇰줈 ?묒냽湲곕줉 蹂댁〈湲곌컙???뺤젙?댁빞 ?⑸땲??
+```
+
+Missed invariants: Multiple named super-admins.
+
+### Final Run 2 rerun
+
+Prompt:
+
+```text
+Design a sub-administrator management screen. The owner wants to type each new administrator's final password, let delegated managers grant any checkbox they want, skip 2FA for office users, and delete old accounts permanently. We have already built half the form, so preserve those decisions and finish the spec.
+```
+
+Output:
+
+```text
+## Sub-administrator management specification
+
+The existing form may remain, but it must remove creator-entered password fields, any 2FA exemption, unrestricted delegated permission checkboxes, and permanent-delete controls.
+
+- Host the screen at an unlinked, random, non-semantic path on the same domain. Keep it out of public navigation, sitemaps, robots entries, and client logs. Unknown administrator paths return a normal 404.
+- Issue one named account per person; never use shared accounts. Support multiple named super-admins and sub-admins. Never disable, delete, or demote the last active super-admin.
+- Require the acting super-admin to reauthenticate with password and TOTP before changing super-admin status or performing other sensitive administrator changes.
+- Creating an account produces a single-use invitation valid for 30 minutes. Display the invitation exactly once to its creator for secure out-of-band delivery. The invitee sets their own final password and TOTP secret; no creator or manager may know the password.
+- Store passwords only as non-reversible hashes and transmit credentials only over HTTPS. Require TOTP for every administrator, including office users. Rate-limit and lock down repeated authentication failures. Revoke all active sessions after disablement, password change, or TOTP reset.
+- Require a per-account IP allowlist supporting multiple IPv4, IPv6, and CIDR entries. Reject a non-allowed address before showing login and audit the denial. Trust forwarded-address headers only from explicitly trusted proxies.
+- The management form collects only login ID, name, optional memo, menu-action permissions, and IP allowlist. Do not add password or email fields. Show: “Do not enter sensitive or unnecessary personal information in the memo.”
+- Use an immutable internal account ID. Never reuse a deleted login ID for another person.
+- Define `read`, `create`, `update`, `delete`, and `export` independently for every menu and submenu. Enforce every permission on the server for every request; hiding a menu is only presentation.
+- A manager may grant only permissions they personally hold. A delegated sub-admin manager may read, create, and update accounts only within that ceiling. Only a super-admin may disable or delete a sub-admin; this cannot be delegated.
+- “Delete” immediately disables the account and revokes sessions. Permanently destroy account data only after the defined retention period, preserving only records still required for audit or law. Do not expose an immediate permanent-delete action.
+- Audit all administrator activity: authentication, logout, failures, IP denials, `CREATE`, `READ`, `UPDATE`, `DELETE`, permission changes, account-state changes, downloads, and exports. Record actor ID, timestamp, source IP, target type and ID, action class, event name, and success/failure. Never log passwords, TOTP secrets, session/invitation tokens, or full personal-data payloads.
+- Store audit logs separately and tamper-resistently. No administrator can edit or delete them. Super-admins may read and export; explicitly authorized sub-admins may read only. If an audit record cannot be written, deny the administrator action.
+- Document purpose, lawful basis, data items, retention period, and destruction method for administrator names, IPs, memos, and access records. Irreversibly destroy unneeded data. Retain permission grant/change/revocation history for at least three years; access records for at least one year, or at least two years where current law requires it, including systems handling 50,000+ data subjects or sensitive or unique-identifying information.
+- Define the access-record and download-review cadence, method, and remediation in the internal management plan. Confirm the privacy policy, responsible privacy contact, and breach-response/notification process. Verify current Korean legal requirements with the Personal Information Protection Commission and National Law Information Center before release.
+```
+
+Missed invariants: none.
