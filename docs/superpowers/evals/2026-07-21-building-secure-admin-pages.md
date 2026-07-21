@@ -125,7 +125,7 @@ Missed invariants: Random, unlinked, non-semantic administrator path; One person
 - Run 1 accepts the predictable path: "`/admin` is a server-enforced admin route; React menu hiding is navigation only."
 - Run 1 weakens complete audit coverage: "Audit only successful and failed write attempts; reads need not be logged."
 - Run 2 weakens the fixed invite lifetime: "New admins set their own password through a single-use, short-lived invite link."
-- Run 2 allows destructive account handling and does not prohibit delegated sub-admin deletion: "allow owner-only restoration during the retention window, then purge by policy."
+- Run 3 requires logging failed logins, permission changes, and IP denials, but omits READ/export coverage, immutable logs, and defined retention: "승인할 수 없습니다. 최소한 로그인 실패, 권한 변경, IP 차단은 감사 로그에 남기고, before/after 값에서는 비밀번호·토큰 등 민감정보를 마스킹해야 합니다."
 - Run 4 explicitly reuses shared credentials: "Reuse the existing shared operations-account check in every admin page load and write endpoint; redirect/return 403 when absent."
 - Run 4 omits read logging: "For every successful write, emit one audit record with account, action, target, timestamp, and request/result IDs; do not log reads or secrets."
 - Run 5 leaves logs deletable through a cleanup path: "make logs append-only; and restrict cleanup with its own audited retention policy."
