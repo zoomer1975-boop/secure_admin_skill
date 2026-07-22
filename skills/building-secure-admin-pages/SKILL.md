@@ -37,6 +37,15 @@ Apply every security control on the server. Hidden routes and hidden menus are s
 - Require TOTP for every administrator and restrict repeated authentication failures.
 - Revoke all sessions after disablement, password change, or TOTP reset.
 - Only an acting super-admin freshly reauthenticated with password and TOTP may reset another administrator's TOTP; revoke all target-account sessions after the reset.
+- Enforce one password policy server-side before hashing or storage on invitation completion, password changes, and resets:
+  - Require at least 10 characters with at least one uppercase letter, one lowercase letter, one digit, and one ASCII special character other than whitespace.
+  - Normalize the password, login ID, and name with Unicode NFKC, case-folding, and whitespace removal. Reject a password containing the full normalized ID or name, any contiguous three-character substring of either, or the full value when either is one or two characters long.
+  - Reject the same character repeated three or more times consecutively (three or more consecutive characters) and ascending or descending digit sequences of three or more digits.
+  - On failure, identify the unmet rules without echoing or recording the password and leave the account, invitation, and stored hash unchanged.
+- During invitation setup, show the invitee three labeled QR codes: the official iOS App Store installation QR, the official Android Google Play installation QR, and one account-specific `otpauth://totp/` QR shared by both platforms. Include direct, clickable official store links without shorteners, redirects, or tracking parameters; do not add device detection.
+- Generate the TOTP QR locally or on the application server. Never send the TOTP secret or provisioning URI to an external QR-generation service, cache, log, analytics event, or client-side storage; return it with `Cache-Control: no-store`, encrypt the secret at rest, and never expose it to the inviting administrator.
+- Put matching URL-encoded issuer values in the TOTP label and `issuer` parameter and encode the secret with Base32. Reuse project TOTP settings or default to SHA-1, six digits, and a 30-second period for Google Authenticator compatibility.
+- Activate the account only after the invitee submits a valid six-digit TOTP code. Apply the existing repeated-failure restriction, destroy unfinished secrets when invitations expire, and never redisplay the provisioning QR after setup succeeds.
 
 ### Access IPs
 

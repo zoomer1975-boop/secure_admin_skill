@@ -43,7 +43,20 @@ test('installs the complete skill for Codex', async (t) => {
   const target = join(home, '.agents', 'skills', skillName);
 
   assert.equal(result.status, 0, result.stderr);
-  assert.match(await readFile(join(target, 'SKILL.md'), 'utf8'), /name: building-secure-admin-pages/);
+  const installedSkill = await readFile(join(target, 'SKILL.md'), 'utf8');
+  assert.match(installedSkill, /name: building-secure-admin-pages/);
+  for (const requirement of [
+    /at least 10 characters/,
+    /uppercase letter, one lowercase letter, one digit, and one ASCII special character/,
+    /three or more consecutive characters/,
+    /iOS App Store installation QR/,
+    /Android Google Play installation QR/,
+    /account-specific `otpauth:\/\/totp\/` QR/,
+    /Never send the TOTP secret.*external QR-generation service/,
+    /valid six-digit TOTP code/,
+  ]) {
+    assert.match(installedSkill, requirement);
+  }
   assert.match(await readFile(join(target, 'agents', 'openai.yaml'), 'utf8'), /display_name:/);
 });
 
