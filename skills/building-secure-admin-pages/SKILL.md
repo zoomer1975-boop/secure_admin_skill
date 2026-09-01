@@ -37,6 +37,10 @@ Apply every security control on the server. Hidden routes and hidden menus are s
 - Require TOTP for every administrator and restrict repeated authentication failures.
 - Revoke all sessions after disablement, password change, or TOTP reset.
 - Only an acting super-admin freshly reauthenticated with password and TOTP may reset another administrator's TOTP; revoke all target-account sessions after the reset.
+- Allow only one active administrator session per account. When authentication succeeds for an account that already has an active session, invalidate the earlier session on the server before issuing the new one and reject every later request from the earlier session.
+- Identify the duplicate by the immutable internal account identifier, never by browser, device, or IP address, so a second browser, device, or network cannot hold a parallel session.
+- Tell the terminated session only that the account signed in elsewhere. Never disclose the other session's IP address, device, or location.
+- Audit the duplicate login and the resulting forced logout as separate entries without recording session tokens, and require the one-session limit in the internal management plan.
 - Enforce one password policy server-side before hashing or storage on invitation completion, password changes, and resets:
   - Require at least 10 characters with at least one uppercase letter, one lowercase letter, one digit, and one ASCII special character other than whitespace.
   - Normalize the password, login ID, and name with Unicode NFKC, case-folding, and whitespace removal. Reject a password containing the full normalized ID or name, any contiguous three-character substring of either, or the full value when either is one or two characters long.

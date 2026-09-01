@@ -71,6 +71,12 @@ test('installs the complete skill for Codex', async (t) => {
     /destroy unfinished secrets when invitations expire/,
     /never redisplay the provisioning QR after setup succeeds/,
     /valid six-digit TOTP code/,
+    /Allow only one active administrator session per account/,
+    /invalidate the earlier session on the server before issuing the new one/,
+    /Identify the duplicate by the immutable internal account identifier, never by browser, device, or IP address/,
+    /Tell the terminated session only that the account signed in elsewhere.*Never disclose the other session's IP address, device, or location/,
+    /Audit the duplicate login and the resulting forced logout as separate entries without recording session tokens/,
+    /require the one-session limit in the internal management plan/,
   ]) {
     assert.match(installedSkill, requirement);
   }
